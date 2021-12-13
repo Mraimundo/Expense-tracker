@@ -8,6 +8,7 @@ import { filterListByMonth, getCurrentMonth } from './util/dataFilter';
 
 import { TableArea } from './components/TableArea';
 import { InfoArea } from './components/InfoArea';
+import { InsertArea } from './components/InsertArea';
 import { GlobalStyle } from "./styles/global";
 
 import * as S from './App.styles';
@@ -45,6 +46,12 @@ export const App = () => {
     setCurrentMonth(newMonth);
   }
 
+  const handleAddItem = (item: Item) => {
+    let newList = [...list];
+    newList.push(item);
+    setList(newList);
+  }
+
   return (
     <>
       <S.Container>
@@ -58,6 +65,11 @@ export const App = () => {
             income={income}
             expense={expense}
           />
+
+          <InsertArea
+            onAdd={handleAddItem}
+          />
+
           <TableArea list={filteredList} />
         </S.Body>
       </S.Container>
